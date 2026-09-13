@@ -18,6 +18,7 @@
     --ink:#eef2f5; --dim:#9aa7b2; --faint:#5d6b76; --glass:rgba(10,16,22,.78); --line:rgba(255,255,255,.09);
     --coking:#ffb81c; --pci:#ff6a3d; --thermal:#5cc8ff; --domestic:#c9d1d9;
   }
+  [hidden]{display:none!important}   /* #gate sets display:flex, which would otherwise beat the hidden attribute */
   html,body{margin:0;height:100%;background:#05080b;color:var(--ink);font:14px/1.4 Archivo,system-ui,sans-serif;overflow:hidden}
   #globe{position:absolute;inset:0}
   .cesium-viewer-bottom{left:auto!important;right:8px}
