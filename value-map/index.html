@@ -468,15 +468,15 @@ document.getElementById("tour").onclick = async () => {
 };
 
 // ---------- share ----------
-// Links always point at the value-by-mine page on the MCF site, never at this hosted copy, so
-// shared clicks land on the page that carries the context. A selected mine rides along as #<slug>;
-// that page passes it back in as ?mine=<slug>.
-const SHARE_URL = "https://www.miningcapitalfunds.com.au/queensland-coal-value-by-mine";
+// Links always point at the coal page on the MCF site, never at this hosted copy, so shared
+// clicks land on the page that carries the context. A selected mine rides along as #value-<slug>;
+// the coal page passes that back in as ?mine=<slug>.
+const SHARE_URL = "https://www.miningcapitalfunds.com.au/queensland-coal-statistics#value";
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const mineBySlug = Object.fromEntries(mines.map(m => [slug(m.name), m]));
 function shareInfo(){
   const m = selected;
-  const url = m ? SHARE_URL + "#" + slug(m.name) : SHARE_URL;
+  const url = m ? SHARE_URL.replace(/#.*$/, "") + "#value-" + slug(m.name) : SHARE_URL;
   const text = m
     ? `${m.name}: an estimated ${fmt$(m.value)} of coal out of the ground in ${DATA.fy.replace("FY","FY ")} from ${fmtT(m.t)} (#${m.rV} by value, #${m.rT} by tonnes in Queensland)`
     : `Queensland coal: tonnes are not dollars. Estimated value out of the ground by mine, ${DATA.fy.replace("FY","FY ")}`;
